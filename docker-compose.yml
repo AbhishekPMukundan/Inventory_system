@@ -1,0 +1,14 @@
+version: '3'
+services:
+    go:
+        image: inventory
+        build: .
+        command: "./inventory"
+        ports:
+            - "50051:50051"
+        depends_on:
+            - "mongo"
+    mongo:
+        image: "mongo"
+        ports:
+            - "27017:27017"

@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package inventory;
+
+option go_package = "inventorypb";
+
+message Inventory {
+    string id = 1;
+    string barcode = 2;
+    string store = 3;
+    string name = 4;
+    string category = 5;
+    string description = 6;
+    string image = 7;
+    bool restricted = 8;
+    int32 inventory = 9;
+    string msrp = 10;
+    string price = 11;
+}
+
+message CreateInventoryRequest {
+    Inventory inventory = 1;
+}
+
+message CreateInventoryResponse {
+    Inventory inventory = 1;
+}
+
+message ReadInventoryRequest {
+    string inventory_id = 1;
+}
+
+message ReadInventoryResponse {
+    Inventory inventory = 1; 
+}
+
+message updateInventoryRequest {
+    Inventory inventory = 1;
+}
+
+message UpdateInventoryResponse {
+    Inventory inventory = 1;
+}
+message DeleteInventoryRequest {
+    string inventory_id = 1;
+}
+
+message DeleteInventoryResponse {
+    string inventory_id = 1;
+}
+
+message ListInventoryRequest {
+
+}
+
+message ListInventoryResponse {
+    Inventory inventory  = 1;
+}
+
+
+service InventoryService {
+    rpc CreateInventory (CreateInventoryRequest) returns (CreateInventoryResponse);
+    rpc ReadInventory (ReadInventoryRequest) returns (ReadInventoryResponse);
+    rpc UpdateInventory (updateInventoryRequest) returns (UpdateInventoryResponse);
+    rpc DeleteInventory (DeleteInventoryRequest) returns (DeleteInventoryResponse); 
+    rpc ListInventory (ListInventoryRequest) returns (stream ListInventoryResponse);
+}
